@@ -18,7 +18,7 @@ We propose a sparse learning algorithm for network graph data, called Graph-Orie
 
 ## An example
 
-'''
+```
 library(GOSPEL)
 data(additive_random_500_XY)
 p <- dim(X)[3]
