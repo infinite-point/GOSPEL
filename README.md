@@ -5,6 +5,8 @@ R package for graph-oriented sparce learning
 
 R(>=3.4.1)
 
+data.table, rARPACK, igraph, bayesopt, Matrix
+
 <strong>Authors:</strong>
 
 Hideko Kawakubo and Teppei Shimamura
