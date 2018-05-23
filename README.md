@@ -40,7 +40,7 @@ for (i in 1:length(gamma_list)){
 min_id <- which.min(BIC_mat)
 beta <- result_mat[,min_id]
 beta
-'''
+```
 
 ## Reference
 Hideko Kawakubo, Yusuke Matsui, Itaru Kushima, Norio Ozaki, and Teppei Shimamura, A Network of Networks Approach]{A Network of Networks Approach for Modeling Interconnected Brain Tissue-Specific Networks, submitted.
