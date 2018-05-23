@@ -1,5 +1,24 @@
-An example
+# GIMLET
+R package for the identification of biological modulators from gene expression data in the framework of enegy statistics
 
+<strong>Depends:</strong>
+
+R(>=3.4.1)
+
+<strong>Authors:</strong>
+
+Hideko Kawakubo and Teppei Shimamura
+
+<strong>Contact:</strong>
+kawakubo[at]med.nagoya-u.ac.jp and shimamura[at]med.nagoya-u.ac.jp
+
+## General overview
+
+We propose a sparse learning algorithm for network graph data, called Graph-Oriented SParcE Learning (GOSPEL), to find a subset of the topological information matrices of the predictor variables (networks) related to the response variable (network). More specifically, we propose to use particular forms of diffusion kernel-based centered kernel alignment as a measure of statistical correlation between graph Laplacian matrices, and solve the optimization problem with a novel graph-guided generalized fused lasso.
+
+## An example
+
+'''
 library(GOSPEL)
 data(additive_random_500_XY)
 p <- dim(X)[3]
@@ -21,4 +40,6 @@ for (i in 1:length(gamma_list)){
 min_id <- which.min(BIC_mat)
 beta <- result_mat[,min_id]
 beta
+'''
 
+## Reference
