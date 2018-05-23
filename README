@@ -1,0 +1,25 @@
+# An example
+
+```
+library(GOSPEL)
+data(additive_random_500_XY)
+p <- dim(X)[3]
+gamma_list <- 10^seq(-1, 1, length=5)
+CKA_mat <- array(0, dim=c(p,p,length(gamma_list)))
+result_mat <- matrix(0, p, length(gamma_list))
+BIC_mat <- c(0, length(gamma_list))
+for (i in 1:length(gamma_list)){
+  cat("gamma list:",i,"\n")
+  gamma <- gamma_list[i]
+  obj <- calculate_R(X, Y, gamma)
+  CKA_mat[,,i] <- obj$CKA_mat
+  Ker_X <- obj$Ker_X
+  Ker_Y <- obj$Ker_Y
+  ans <- GOSPEL(Ker_X, Ker_Y, CKA_mat[,,i])
+  result_mat[,i] <- as.matrix(ans$beta)
+  BIC_mat[i] <- ans$bic
+}
+min_id <- which.min(BIC_mat)
+beta <- result_mat[,min_id]
+beta
+```
