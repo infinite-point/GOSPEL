@@ -4,6 +4,7 @@ Title: Graph Oriented Sparse Learning
 Version: 1.0
 Date: 2018-05-23
 Author: Hideko Kawakubo & Teppei Shimamura
-Maintainer: Hideko Kawakubo <kawakubo@med.nagoya-u.ac.jp > & Teppei Shimamura <shimamura@med.nagoya-u.ac.jp >
+Maintainer: Hideko Kawakubo <kawakubo@med.nagoya-u.ac.jp> & Teppei Shimamura <shimamura@med.nagoya-u.ac.jp>
 Description: This function estimates all the relevant predictor networks to the response network, and also eliminates irrelevant predictor networks to the response network.The estimation for the network structure of the given networks is available by applying GOSPEL to all the networks.
-License: GPL-2
+License: GPL (>= 2)
+Depends: data.table, rARPACK, igraph, bayesopt, Matrix
