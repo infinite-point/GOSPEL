@@ -22,7 +22,8 @@ We propose a sparse learning algorithm for network graph data, called Graph-Orie
 
 ```
 library(GOSPEL)
-data(additive_random_500_XY)
+files <- list.files(system.file("data",package="GOSPEL"),full.names=TRUE)
+load(files[1])
 p <- dim(X)[3]
 gamma_list <- 10^seq(-1, 1, length=5)
 CKA_mat <- array(0, dim=c(p,p,length(gamma_list)))
