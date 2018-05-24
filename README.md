@@ -5,7 +5,7 @@ R package for graph-oriented sparce learning
 
 R(>=3.4.1)
 
-rARPACK, bayesopt, Matrix
+rARPACK, bayesopt, Matrix, igraph, data.table
 
 <strong>Authors:</strong>
 
