@@ -14,6 +14,18 @@ Hideko Kawakubo and Teppei Shimamura
 <strong>Contact:</strong>
 kawakubo[at]med.nagoya-u.ac.jp and shimamura[at]med.nagoya-u.ac.jp
 
+## Installation:
+
+To install GOSPEL package, we start R and run the following codes on R console:
+
+```library(devtools)
+install_github("hoxo-m/bayesopt")
+install_github("infinite-point/GOSPEL")
+```
+
+<strong>Note:</strong>
+We first need to install an R Implementation of bayesian optimization https://github.com/hoxo-m/bayesopt.
+
 ## General overview
 
 We propose a sparse learning algorithm for network graph data, called Graph-Oriented SParcE Learning (GOSPEL), to find a subset of the topological information matrices of the predictor variables (networks) related to the response variable (network). More specifically, we propose to use particular forms of diffusion kernel-based centered kernel alignment as a measure of statistical correlation between graph Laplacian matrices, and solve the optimization problem with a novel graph-guided generalized fused lasso.
