@@ -1,6 +1,6 @@
-require("data.table")
+#require("data.table")
 require("rARPACK")
-require("igraph")
+#require("igraph")
 require("bayesopt")
 require("Matrix")
 
