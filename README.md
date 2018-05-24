@@ -46,4 +46,4 @@ beta
 ```
 
 ## Reference
-Hideko Kawakubo, Yusuke Matsui, Itaru Kushima, Norio Ozaki, and Teppei Shimamura, A Network of Networks Approach]{A Network of Networks Approach for Modeling Interconnected Brain Tissue-Specific Networks, submitted.
+Hideko Kawakubo, Yusuke Matsui, Itaru Kushima, Norio Ozaki, and Teppei Shimamura, A Network of Networks Approach for Modeling Interconnected Brain Tissue-Specific Networks, submitted.
