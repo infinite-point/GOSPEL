@@ -1,1 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+importFrom(rARPACK,eigs)
+importFrom(bayesopt,bayesopt)
+importFrom(Matrix,Matrix)
+
