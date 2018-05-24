@@ -190,8 +190,8 @@ calculate_R <- function(X, Y, gamma, verbose = TRUE){
 }
 
 generate_C <- function(X, R){
-# C: edge by vertex incident matrix as in the paper
-# CNorm in Proposition 2 in the paper
+# C: edge by vertex incident matrix as in the paper of Chen et al.
+# CNorm in Proposition 2 in the paper of Chen et al.
   R[lower.tri(R)] <- 0
   E <- which(R != 0, arr.ind = TRUE)
   nE <- nrow(E)
