@@ -18,7 +18,8 @@ kawakubo[at]med.nagoya-u.ac.jp and shimamura[at]med.nagoya-u.ac.jp
 
 To install GOSPEL package, we start R and run the following codes on R console:
 
-```library(devtools)
+```
+library(devtools)
 install_github("hoxo-m/bayesopt")
 install_github("infinite-point/GOSPEL")
 ```
