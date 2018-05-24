@@ -17,7 +17,7 @@ GOSPEL <- function(Ker_X, Ker_Y, CKA_mat, lambda_1 = 0.01, tau, lambda_2){
         bic <- Inf
       } else {
         bic <- BIC_GP(Ker_X, Ker_Y, res$beta)
-      }
+      }    
    })
    return(-bic)
   }
@@ -213,4 +213,3 @@ BIC_GP <- function(Ker_X, Ker_Y, beta){
   bic <- -2 * loglik + log(n2) * df
   return(bic)  
 }
-
