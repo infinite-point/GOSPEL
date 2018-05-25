@@ -1,9 +1,3 @@
-#require("data.table")
-require("rARPACK")
-#require("igraph")
-require("bayesopt")
-require("Matrix")
-
 GOSPEL <- function(Ker_X, Ker_Y, CKA_mat, lambda_1 = 0.01, tau, lambda_2){
   if(missing(tau)) tau <- quantile(unique(CKA_mat[CKA_mat!=1]),probs=seq(from=0.75,to=0.95,length=10))
   if(missing(lambda_2)) lambda_2 <- 10^(seq(from=-2,to=2,length=10))
@@ -14,6 +8,7 @@ GOSPEL <- function(Ker_X, Ker_Y, CKA_mat, lambda_1 = 0.01, tau, lambda_2){
    try({
       res <- try(graph_guided_fused_lasso(Ker_X, Ker_Y, R, y, z),silent=FALSE)
       if(inherits(res,"try-error")){ # If graph guided fused lasso cannot be fit, just return Inf
+        cat("try-error\n")
         bic <- Inf
       } else {
         bic <- BIC_GP(Ker_X, Ker_Y, res$beta)
@@ -65,7 +60,7 @@ C, CNorm, maxiter = 1e2, tol = 1e-3, b0, mu = 1e-1){
   if(!missing(b0)){
     beta <- b0
   } else {
-    beta <- Matrix(0,p,1,sparse=TRUE)
+    beta <- matrix(0,p,1)
   }
 
   if(missing(C) | missing(CNorm)){
@@ -94,14 +89,14 @@ C, CNorm, maxiter = 1e2, tol = 1e-3, b0, mu = 1e-1){
 
   for(iter in 1:maxiter){
     # Update alpha
-    A <- hard_threshold(as.matrix(C %*% w / mu), 1)
+    A <- hard_threshold(as.vector(C %*% w / mu), 1)
     # Update gradient
     if(p < 2*n && p < 10000){
       grad <- XX %*% w - XY + t(C) %*% A
     } else {
       grad <- t(X) %*% (X %*% w - Y) + t(C) %*% A
     }
-    beta_new <- soft_threshold(w - (1/L) * grad, lambda_2 / L)
+    beta_new <- soft_threshold(as.vector(w - (1/L) * grad), lambda_2 / L)
     # Update beta
     density[iter] <- sum(beta_new != 0) / p
     # Update theta
@@ -125,22 +120,22 @@ C, CNorm, maxiter = 1e2, tol = 1e-3, b0, mu = 1e-1){
 }
 
 soft_threshold <- function(vv, lambda_2){
-  n <- nrow(vv)
+  n <- length(vv)
   p.ind <- which(vv > lambda_2)
   n.ind <- which(vv < - lambda_2)
-  res <- Matrix(0, n, 1, sparse=TRUE)
-  res[p.ind] <- vv[p.ind] - lambda_2
-  res[n.ind] <- vv[n.ind] + lambda_2
+  res <- matrix(0, n, 1)
+  if(length(p.ind)!=0) res[p.ind] <- vv[p.ind] - lambda_2
+  if(length(n.ind)!=0) res[n.ind] <- vv[n.ind] + lambda_2
   return(res)
 }
 
 hard_threshold <- function(vv, lambda_2){
-  n <- nrow(vv)
+  n <- length(vv)
   p.ind <- which(vv > lambda_2)
   n.ind <- which(vv < - lambda_2)
-  res <- Matrix(0, n, 1, sparse=TRUE)
-  res[p.ind] <- lambda_2
-  res[n.ind] <- - lambda_2
+  res <- matrix(0, n, 1)
+  if(length(p.ind)!=0) res[p.ind] <- lambda_2
+  if(length(n.ind)!=0) res[n.ind] <- - lambda_2
   return(res)
 }
 
@@ -168,7 +163,7 @@ gen_kernel_matrix <- function(X, Y, gamma){
     return(list(Ker_X = Ker_X, Ker_Y = Ker_Y))
 }
 
-calculate_R <- function(X, Y, gamma, verbose = TRUE){
+calculate_R <- function(X, Y, gamma, verbose = FALSE){
   size <- dim(X)
   n_node <- size[1]
   p <- size[3]
@@ -196,14 +191,13 @@ generate_C <- function(X, R){
   E <- which(R != 0, arr.ind = TRUE)
   nE <- nrow(E)
   p <- ncol(X)
-  C <- Matrix(0, nE, p, sparse=TRUE)
+  C <- matrix(0, nE, p)
   for(i in 1:nE){
     C[i, E[i, 1]] <- C[i, E[i, 2]] <- 1
   }
   CNorm <- 2 * max(rowSums(C^2))
   return(list(C = C, CNorm = CNorm))
 }
-
 
 BIC_GP <- function(Ker_X, Ker_Y, beta){
   n2 <- dim(Ker_X)[1]
