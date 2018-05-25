@@ -14,8 +14,10 @@ GOSPEL(Ker_X, Ker_Y, CKA_mat, lambda_1 = 0.01, tau, lambda_2)
   \item{lambda_2}{Candidates of the second regularization parameter in Equation (1).}
 }
 \details{
-This function estimates all the relevant predictor networks to the response network, and also eliminates irrelevant predictor networks to the response network.
-The estimation for the network structure of the given networks is available by applying GOSPEL to all the networks.}
+We propose a sparse learning algorithm for network graph data, called Graph-Oriented SParcE Learning (GOSPEL), 
+to find a subset of the topological information matrices of the predictor variables (networks) related to the response variable (network). 
+More specifically, we propose to use particular forms of diffusion kernel-based centered kernel alignment as a measure of statistical correlation between graph Laplacian matrices, 
+and solve the optimization problem with a novel graph-guided generalized fused lasso.}
 \value{
   \item{beta}{A regression coefficient vector.}
   \item{bic}{The score of BIC corresponding to the coefficient vector.}
@@ -26,6 +28,9 @@ The estimation for the network structure of the given networks is available by a
 }
 \author{
 Hideko Kawakubo & Teppei Shimamura
+}
+\references{
+Hideko Kawakubo, Yusuke Matsui, Itaru Kushima, Norio Ozaki, and Teppei Shimamura, A Network of Networks Approach for Modeling Interconnected Brain Tissue-Specific Networks, submitted.
 }
 \examples{
 library(GOSPEL)
