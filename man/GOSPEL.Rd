@@ -34,9 +34,9 @@ Hideko Kawakubo, Yusuke Matsui, Itaru Kushima, Norio Ozaki, and Teppei Shimamura
 }
 \examples{
 library(GOSPEL)
-data(additive_random_500_XY)
+data(additive_scalefree_500_XY)
 p <- dim(X)[3]
-gamma_list <- 10^seq(-1, 1, length=5)
+gamma_list <- 10^seq(-2, 0, length=5)
 CKA_mat <- array(0, dim=c(p,p,length(gamma_list)))
 result_mat <- matrix(0, p, length(gamma_list))
 BIC_mat <- c(0, length(gamma_list))
